@@ -5,11 +5,12 @@ def bluecolor(frame):
   while(1):
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)    # BGR을 HSV로 변환해줌
 
-    lower_blue = np.array([100,100,120])          # 파랑색 범위
-    upper_blue = np.array([150,255,255])
+    lower = np.array([110,30,30])          # 파랑색 범위
+    upper = np.array([130,255,255])
 
-    mask = cv2.inRange(hsv, lower_blue, upper_blue)
-    res = cv2.bitwise_and(frame, frame, mask=mask)
+    mask = cv2.inRange(frame, lower, upper)
+    
+    res = cv2.bitwise_and(frame, frame, mask)
 
     return res
 
@@ -17,11 +18,13 @@ def greencolor(frame):
   while(1):
     hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
     
-    lower_green = np.array([50, 150, 50])        # 초록색 범위
-    upper_green = np.array([80, 255, 255])
+    lower = np.array([135,65,65])
+    upper = np.array([58,166,85])
+  
+    mask = cv2.inRange(frame, lower, upper)
 
-    mask = cv2.inRange(hsv, lower_green, upper_green)
-    res = cv2.bitwise_and(frame, frame, mask=mask)    # 흰색 영역에 초록색 마스크를 씌워줌.
+    
+    res = cv2.bitwise_and(frame, frame, mask)
 
     return res
 
@@ -29,11 +32,13 @@ def redcolor(frame):
   while(1):
     hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV)
     
-    lower_red = np.array([150, 50, 50])        # 빨강색 범위
-    upper_red = np.array([180, 255, 255])
+    # upper boundary RED color range values; Hue (160 - 180)
+    lower = np.array([160,50,50])
+    upper = np.array([180,255,255])
+  
+    mask = cv2.inRange(frame, lower, upper)
 
-    mask = cv2.inRange(hsv, lower_red, upper_red)
-    res2 = cv2.bitwise_and(frame, frame, mask=mask)    # 흰색 영역에 빨강색 마스크를 씌워줌.
+    
+    res = cv2.bitwise_and(frame, frame, mask)
 
     return res
-
