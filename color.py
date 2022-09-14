@@ -1,3 +1,5 @@
+# b,g,r hsv 값 테스트 해보면서 맞춰야 함
+
 import cv2
 import numpy as np
 
@@ -5,7 +7,7 @@ def bluecolor(frame):
   while(1):
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)    # BGR을 HSV로 변환해줌
 
-    lower = np.array([110,30,30])          # 파랑색 범위
+    lower = np.array([110,30,30])         
     upper = np.array([130,255,255])
 
     mask = cv2.inRange(frame, lower, upper)
