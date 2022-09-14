@@ -1,7 +1,21 @@
 import cv2
 import numpy as np
 
-    
+def Direction_Check(approx):
+  # approx의 y 좌표 값의 차를 구함 
+  a = approx[0,1]-approx[1,1]
+  b = approx[0,1]-approx[2,1]
+  c = approx[1,1]-approx[2,1]
+  # 차가 가장 작은 것들의 y 좌표를 제외하고 남은 하나를 찾음 
+  if a <= b and a <= c: res = 2
+  elif b <= a and b <= c: res = 1
+  else: res = 0
+  # 삼각형의 방향이 어딘지 판별 
+  if approx[res,1] < approx[(res+1)%3,1]: res = 1 # 1: front | 2: back
+  else: res = 2
+
+  return res 
+
 def Triangle_Detection(frame):
    
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -22,7 +36,11 @@ def Triangle_Detection(frame):
         vtc = len(approx)
         
         if vtc == 3:
-            return 1
+          Direction_Check(approx)
+          return res
 
         else : 
             return 0    
+             
+img = cv2.imread('./img.png')
+Triangle_Detection(img)
