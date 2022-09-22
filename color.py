@@ -23,8 +23,8 @@ def greencolor(frame):
 
 def redcolor(frame):
   
-  lower = np.array([0, 0, 100])
-  upper = np.array([100,100,255])
+  lower = np.array([0, 0, 60])
+  upper = np.array([40,40,255])
   
   img_mask = cv2.inRange(frame, lower, upper)  
   res = cv2.bitwise_and(frame, frame, mask=img_mask)
