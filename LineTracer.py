@@ -3,8 +3,9 @@ import numpy as np
 import RPi.GPIO as GPIO
 from time import sleep
 from color import *
-from Triangle_Detection import *
-
+from circle import *
+from motor import *
+from barcode import *
 
 def main():
     camera = cv2.VideoCapture(0)
@@ -15,16 +16,15 @@ def main():
     while( camera.isOpened() ):
         ret, frame = camera.read()
         frame = cv2.flip(frame,-1)
-        res = Triangle_Detection(frame)
+        cv2.imshow('frame',frame)
+        res = Circle(frame)
         print(res)
         if res is None:
             motor_go(40)
             continue
-        if res > 0:
-            img = redcolor(frame)
-            if (img[50,50] != [0,0,0]).any():
-                sleep(0.5)
-                motor_stop()
+        if res == 1:
+            motor_stop()
+            
         else:
 
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
