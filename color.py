@@ -40,3 +40,11 @@ def sectioncolor(frame):
   res = cv2.bitwise_and(frame, frame, mask=img_mask)
 
   return res
+
+def Numcolor(frame):
+    lower = np.array([0,0,0])
+    upper = np.array([255,40,40])
+    
+    img_mask = cv2.inRange(frame, lower, upper)
+    res = cv2.bitwise_and(frame,frame,mask=img_mask)
+    return res
