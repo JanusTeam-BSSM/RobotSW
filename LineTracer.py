@@ -68,7 +68,3 @@ def LineTracing(path_data):
         break
     
     cv2.destroyAllWindows()
-
-if __name__ == '__main__':
-    main()
-    GPIO.cleanup()
